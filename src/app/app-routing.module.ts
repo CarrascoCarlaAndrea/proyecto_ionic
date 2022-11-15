@@ -8,8 +8,22 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'lugares',
     pathMatch: 'full'
+  },
+  {
+    path: 'lugares',
+    children:[
+      {
+        path:'',
+        loadChildren: () => import('./lugares/lugares.module').then( m => m.LugaresPageModule)
+      },
+      {
+        path:':lugarId',
+        loadChildren: () => import('./lugares/lugar-detalles/lugar-detalles.module').then( m => m.LugarDetallesPageModule)
+      }
+    ]
+    
   },
 ];
 
